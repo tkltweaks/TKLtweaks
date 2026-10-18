@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TKL Tweaks — Windows Performance Toolkit</title>
+  <meta name="description" content="TKL Tweaks — free Windows gaming and performance tweaks. Premium and Ultimate unlock with a license key." />
+  <style>
+    :root {
+      --bg: #0b0b14;
+      --card: #141422;
+      --card2: #1a1a2e;
+      --text: #e8e8f2;
+      --muted: #9a9ab8;
+      --accent: #7c5cff;
+      --accent2: #5ad7ff;
+      --green: #50d28c;
+      --gold: #ffbe37;
+      --red: #e64650;
+      --line: #2a2a44;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      min-height: 100vh;
+    }
+    .bg {
+      position: fixed; inset: 0; z-index: -1;
+      background:
+        radial-gradient(900px 500px at 15% -10%, rgba(124,92,255,.28), transparent 55%),
+        radial-gradient(700px 400px at 90% 10%, rgba(90,215,255,.12), transparent 50%),
+        radial-gradient(600px 400px at 50% 100%, rgba(80,210,140,.08), transparent 45%),
+        var(--bg);
+    }
+    header {
+      max-width: 960px; margin: 0 auto;
+      padding: 28px 24px 0;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-weight: 800; font-size: 1.25rem; letter-spacing: .04em;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .nav a {
+      color: var(--muted); text-decoration: none; margin-left: 20px; font-size: .95rem;
+    }
+    .nav a:hover { color: var(--text); }
+    main { max-width: 960px; margin: 0 auto; padding: 48px 24px 80px; }
+    .hero { text-align: center; padding: 40px 0 56px; }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 800;
+      letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 16px;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero p { color: var(--muted); font-size: 1.15rem; max-width: 540px; margin: 0 auto 32px; }
+    .cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(90deg, var(--accent), #6a8cff);
+      color: #fff; font-weight: 700; font-size: 1.05rem;
+      padding: 14px 28px; border-radius: 14px; text-decoration: none;
+      box-shadow: 0 8px 32px rgba(124,92,255,.35);
+      transition: transform .15s, box-shadow .15s;
+    }
+    .cta:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(124,92,255,.45); }
+    .cta-sub { display: block; margin-top: 12px; color: var(--muted); font-size: .85rem; }
+    .grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px;
+    }
+    @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+    .card {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 18px; padding: 24px 22px;
+    }
+    .card h3 { font-size: 1.15rem; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: .92rem; }
+    .card.free { border-color: rgba(80,210,140,.45); }
+    .card.prem { border-color: rgba(255,190,55,.45); }
+    .card.ult { border-color: rgba(230,70,80,.45); }
+    .badge {
+      display: inline-block; font-size: .7rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 999px; margin-bottom: 12px;
+    }
+    .free .badge { background: rgba(80,210,140,.15); color: var(--green); }
+    .prem .badge { background: rgba(255,190,55,.15); color: var(--gold); }
+    .ult .badge { background: rgba(230,70,80,.15); color: var(--red); }
+    section { margin-top: 64px; }
+    section h2 { font-size: 1.5rem; margin-bottom: 16px; }
+    .steps { list-style: none; counter-reset: step; }
+    .steps li {
+      counter-increment: step; position: relative;
+      padding: 16px 16px 16px 56px; margin-bottom: 10px;
+      background: var(--card); border-radius: 14px; border: 1px solid var(--line);
+      color: var(--muted);
+    }
+    .steps li::before {
+      content: counter(step); position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+      width: 28px; height: 28px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff; font-weight: 700; font-size: .85rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .steps li strong { color: var(--text); }
+    footer {
+      max-width: 960px; margin: 0 auto; padding: 24px;
+      border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem;
+      text-align: center;
+    }
+    code {
+      background: var(--card2); padding: 2px 8px; border-radius: 6px;
+      font-family: Consolas, monospace; font-size: .88em; color: var(--accent2);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <header>
+    <div class="logo">TKL TWEAKS</div>
+    <nav class="nav">
+      <a href="#download">Download</a>
+      <a href="#plans">Plans</a>
+      <a href="#install">Install</a>
+    </nav>
+  </header>
+  <main>
+    <div class="hero" id="download">
+      <h1>Windows tweaks.<br /><span>Built for gaming.</span></h1>
+      <p>Latency, input, GPU and system tools in one app. Free to start — unlock more with a key from the owner.</p>
+      <a class="cta" href="TKL-Tweaks-v6.0-friends.zip" download>Download TKL Tweaks v6.0</a>
+      <span class="cta-sub">Windows 10 / 11 · ~70 KB zip · Run as Administrator</span>
+    </div>
+
+    <div class="grid" id="plans">
+      <div class="card free">
+        <span class="badge">Free</span>
+        <h3>Core toolkit</h3>
+        <p>Gaming, input, Explorer and privacy basics. Latency test, DNS tools and cleanup. No key needed.</p>
+      </div>
+      <div class="card prem">
+        <span class="badge">Premium</span>
+        <h3>Go deeper</h3>
+        <p>Advanced GPU, scheduler and network options. More privacy, Edge and system controls. Needs a key.</p>
+      </div>
+      <div class="card ult">
+        <span class="badge">Ultimate</span>
+        <h3>Full access</h3>
+        <p>Service tuning, power plans, security hardening and advanced policies. Needs an Ultimate key.</p>
+      </div>
+    </div>
+
+    <section id="install">
+      <h2>Install in 4 steps</h2>
+      <ol class="steps">
+        <li><strong>Download</strong> the zip from the button above.</li>
+        <li><strong>Unzip</strong> and keep <code>Launch TKL Tweaks.bat</code> next to <code>TKLTweaks.ps1</code>.</li>
+        <li><strong>Right-click</strong> the .bat → <strong>Run as administrator</strong>.</li>
+        <li>Create an account. For Premium/Ultimate, open <strong>Account</strong> and paste a key from the owner.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Notes</h2>
+      <div class="card">
+        <p style="color:var(--muted)">
+          Every tweak is backed up before it is applied. Use <strong style="color:var(--text)">Undo All</strong> to restore.
+          Restart Windows after applying for full effect. Your login stays on your PC only
+          (<code>%AppData%\TKLTweaks</code>) — it is not stored inside the download.
+        </p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    TKL Tweaks v6.0 · Not affiliated with Microsoft · Keys issued by the distributor only
+  </footer>
+</body>
+</html>
